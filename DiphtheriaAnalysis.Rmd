@@ -1,0 +1,551 @@
+---
+title: "<h2>Analysis of DIPHTHERIA Distribution Across the United States (1880-2014)</h2>"
+author: ""
+output: html_document
+date: ""
+---
+### Abstract
+
+This study investigated diphtheria cases in the United States from 1887 to 2014.
+The analysis revealed a significant burden of the disease particularly in the northeast region.
+The study identified a peak in diphtheria cases followed by a gradual decline.
+Notably, some states had the highest mortality rates than others.
+These findings inform policymakers and public health authorities on targeted interventions and preventive measures to reduce the impact of diphtheria and protect the population from this potentially life-threatening disease.
+
+### Introduction
+
+Diphtheria is a highly contagious bacterial infection caused by Corynebacterium diphtheria.
+It primarily affects the respiratory system and can lead to severe complications if left untreated.
+Diphtheria has been recognized as a significant public health threat throughout history, with devastating outbreaks occurring before the development of effective vaccines.
+The symptoms of diphtheria include a sore throat, fever, weakness.
+Before the introduction of diphtheria vaccines, the disease posed a significant risk, especially for children.
+In the late 19th and early 20th centuries, diphtheria epidemics caused widespread illness and mortality.
+The bacteria were transmitted through respiratory droplets, direct contact, or contact with contaminated objects.
+Overcrowded living conditions and poor sanitation contributed to the rapid spread of the disease.
+In the United States, diphtheria became a national concern during the early 20th century.
+In 1921, there were approximately 206,000 reported cases and 15,520 deaths attributed to diphtheria.
+Children were particularly susceptible, and the disease accounted for a substantial number of childhood deaths.
+The severity of the disease and its impact on public health led to significant efforts to develop a vaccine.In conclusion, diphtheria is a highly contagious bacterial infection that has historically posed a significant threat to public health.
+Through the development and widespread use of vaccines, the incidence of diphtheria has been greatly reduced.
+However, maintaining high vaccination rates and ensuring access to healthcare services are crucial to prevent the resurgence of this potentially deadly disease.
+
+### Problem Definition
+
+Understanding the prevalence and risk factors associated with diphtheria is crucial for effective prevention and treatment strategies.
+In order to develop a comprehensive analysis of diphtheria, it is important to identify the most affected regions and the time frame during which the disease is most prevalent.
+Additionally, investigating the contributing factors such as vaccination coverage, living conditions, and healthcare accessibility can help in addressing the challenges posed by diphtheria.
+By examining these factors, we can gain insights into the patterns and impact of diphtheria outbreaks, enabling the development of targeted interventions to combat the disease effectively.
+
+### Objective
+
+The objective of this study is to investigate the prevalence and distribution of diphtheria cases in various regions and time periods.
+By analyzing data from different cities or states within a specified timeframe, we aim to identify the peak years and areas affected by diphtheria in the United States between 1887 and 2014.
+Understanding the patterns and geographical spread of the disease can provide valuable insights for implementing targeted prevention and control measures, ultimately reducing the incidence and impact of diphtheria outbreaks.
+
+### Method
+
+The dataset used for diphtheria analysis was obtained from the Project Tycho Level 2 Data, available at <https://healthdata.gov/dataset/Project-Tycho-Level-2-Data/8ihh-ztee/data>.
+The dataset covers the period from 1887 to 2014, providing a comprehensive collection of diphtheria cases.
+To conduct the analysis, certain preprocessing steps were performed, including the removal of irrelevant columns such as URLs, to focus on the essential data.
+The analysis primarily focused on identifying the peak periods of diphtheria and the geographical distribution of cases.
+The data was visualized using various charts and graphs to provide clear insights.
+Initially, the overall trend of diphtheria cases over the years was examined, and peak time periods were identified.
+This information was crucial in understanding the intensity of the disease during specific years.
+Furthermore, the dataset was analyzed to determine the states with the highest number of diphtheria cases.
+By visualizing the data using bar charts, the states experiencing a significant increase in diphtheria-related deaths were identified.
+The aim was to pinpoint regions where the disease had a substantial impact.
+Finally, a comparative analysis of diphtheria deaths in different states was conducted.
+By examining the data and using appropriate visualization techniques, the states with the highest mortality rates were identified.
+This analysis helped to highlight areas where immediate attention and preventive measures were required to address the diphtheria epidemic effectively.
+Overall, the combination of data analysis and visualization techniques provided valuable insights into the prevalence and distribution of diphtheria cases over a significant period, aiding in understanding the impact of the disease and informing targeted strategies for prevention and control.
+
+### Result
+
+The analysis of diphtheria cases revealed interesting findings regarding the impact and distribution of the disease in the United States.
+Visualization of the United States showed that the northeast side of the US, along with Illinois and New York, was the most affected by diphtheria.
+These regions exhibited a higher volume of reported cases, indicating a significant burden of the disease.
+In a pie chart, it was observed that around 20% of the cases were reported in New York, followed by Illinois and Pennsylvania.
+Further analysis was conducted using a bar chart to compare the impact of diphtheria across states.
+. This disparity emphasized the varying degrees of diphtheria prevalence among different states.
+Examining the temporal aspect, a line chart illustrating the number of cases over a five-year interval showed a significant jump in cases in 1905, the mean of cases jumped 5,000 to 50,000 .
+The peak of diphtheria cases occurred between 1925 and 1930, with more than 125,000 mean cases reported, followed by a gradual decrease to around 5 in 1980.
+In a bar chart focused on states with more than 100,000 cases, it was observed that New York had approximately 67,000 deaths out of 400,000 cases, resulting in a death rate of 16%.
+Illinois had a death rate of 10%, and Pennsylvania had a death rate of 14%, despite being the state with the second-highest number of reported cases.
+An overall pie chart depicted the percentage of cases and deaths associated with diphtheria.
+The disease accounted for 8.3% of all reported deaths.
+
+Final plots Illustrates The weak negative correlations between Diphtheria cases in Illinois and New York (tow most affected states) suggest that when there is an increase in the number of cases in one state, there is a slight tendency for the number of cases in the other state to decrease.
+However, this association is limited and not particularly strong, with Illinois exhibiting a slightly stronger negative correlation (-0.096) compared to New York (-0.069).The correlations are still considered weak, indicating that the relationship between the number of cases in these two states is not very strong or predictable.
+
+These findings provide valuable insights into the burden of diphtheria across different states in the United States.
+The visualization and analysis shed light on the varying prevalence, case numbers, and fatality rates associated with diphtheria, contributing to a better understanding of the impact of the disease and the regions that were most affected.
+
+##### Loading Libraries
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+# Libraries
+
+#install.packages("data.table")
+#install.packages("ggplot2")
+#install.packages("maps")
+#install.packages("usmap")
+#install.packages("mapdata")
+#install.packages("choroplethr")
+#install.packages("RColorBrewer")
+
+library(data.table)
+library(ggplot2)
+library(tidyverse)
+library(lubridate)
+library(maps)
+library(mapdata)
+library(choroplethr)
+library(plotly)
+library(ggiraph)
+library(usmap)
+library(RColorBrewer)
+library(highcharter)
+library(dplyr)
+library(tidyverse)
+library(readr)
+library(scales)
+library(GGally)
+library(highcharter)
+library(viridisLite)
+
+
+```
+
+##### Filtering the dataset
+
+```{r}
+# Loading the dataset and performing filtering on it
+
+datasetPath <- "ProjectTycho_Level2_v1.1.0.csv"
+
+# fread function that reads dataset  
+dataSet <- fread(datasetPath)
+
+# Removing unnecessary columns
+dataSet <- subset(dataSet, select = -c(country, url))
+
+# Filtering the specific disease(DIPHTHERIA)
+filteredData <- dataSet[dataSet$disease == 'DIPHTHERIA']
+filteredDataForMap = filteredData %>% group_by(state)%>%
+  summarise(cases = sum(number),
+            .groups = 'drop')
+
+```
+
+##### Figure 1: Ploting the the disease (DIPHTHERIA) on US map
+
+```{r warning=FALSE}
+  # Mapping disease cases to the US map to show the distribution across the country
+  
+  # Create the initial map plot using ggplot2 and usmap
+  
+  usMap <- plot_usmap(
+    data = filteredDataForMap,
+    values = "cases",
+    color = "white",
+    labels = TRUE,
+    label_color = "black"
+  ) +
+  # Customize the fill scale colors and legend labels
+  scale_fill_continuous(
+    low = "#56B4E9", 
+    high = "#00325e", 
+    name = "Diease", 
+    label = scales::comma
+  )+
+  theme(legend.position = "center");
+  usMap$layers[[2]]$aes_params$size <- 2
+
+  # Enhance the map using plotly (library(plotly) for interactivity and styling
+  usMap <- usMap %>% 
+    plotly::highlight("plotly_hover") %>%
+    plotly::style(hoverlabel = list(font = list(size = 12)))
+  
+  usMap <- config(usMap, displayModeBar = FALSE)
+  
+  # Setting title for the map
+  
+  usMap <- layout(
+    usMap, 
+    title = list(text = "Figure 1: Distribution of DIPHTHERIA cases all over the country",
+                 style = list(fontSize = "12px"), x = 0.5),
+    margin = list(t = 80)
+  )
+  usMap
+```
+
+##### Creating a circular graph (pie chart) to visualize the distribution of DIPHTHERIA cases by state
+
+```{r}
+# Loading data for Circular Graph (pie chart)
+cases<- filteredData %>%
+group_by(state) %>%
+summarise(totalCases = sum(number))
+
+# Generate a color for  each state
+num_states <- nrow(cases)
+colors <- viridis(num_states)
+
+# Create the data for the circular graph
+pie_data <- data.frame(
+  name = cases$state,
+  y = cases$totalCases,
+  color = colors
+)
+
+# Create the circular graph (pie chart)
+statesPieChart <- highchart() %>%
+  hc_title(text = "Figure 2: DIPHTHERIA cases by state", align = "center",
+           style = list(fontSize = "15px")) %>%
+  hc_plotOptions(pie = list(
+    allowPointSelect = TRUE,
+    cursor = "pointer",
+    dataLabels = list(enabled = TRUE, format = "<b>{point.name}</b>: {point.percentage:.1f}%")
+  )) %>%
+  hc_add_series(
+    name = "Total number of cases",
+    type = "pie",
+    data = pie_data
+  )
+
+statesPieChart
+
+
+```
+
+##### Drawing a linear graph of disease (DIPHTHERIA) from 1880 to 2014
+
+```{r}
+
+# Creating a linear graph of disease from 1880 to 2014 to check which decade has the highest cases
+
+filteredData$from_date <- as.Date(filteredData$from_date)
+filteredData$to_date <- as.Date(filteredData$to_date)
+
+# Creating a new dataframe to store the expanded rows
+expanded_data <- filteredData %>%
+  mutate(date_sequence = map2(from_date, to_date, seq, by = "1 year")) %>%
+  unnest(date_sequence) %>%
+  select(-from_date, -to_date)
+
+# Joining the expanded data with the mean_cases data
+mean_cases <- expanded_data %>%
+  group_by(years = floor_date(date_sequence, "1 years")) %>%
+  summarise(totalCases = sum(number))
+
+# Creating the linear graph for each decade
+ggplot(mean_cases, aes(x = years, y = totalCases)) +
+  geom_line() +
+  geom_point(color = "#56B4E9") +
+  labs(x = "Years", y = " Total Number of Disease Cases", 
+       title = " Figure 3: Total number of disease cases per year (1880-2014)") +
+  theme_bw() +
+  scale_x_date(date_labels = "%Y", date_breaks = "5 years", limits = c(as.Date("1880-01-01"), 
+                                                                       as.Date("2014-12-31")),
+               expand = c(0, 0)) +
+  scale_y_continuous(labels = comma) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1)) +
+  guides(x = guide_axis(n.dodge = 2))
+
+
+```
+
+##### Making a bar chart for states with more than 100,000 cases
+
+```{r}
+# Making a bar chart for states with cases above 100,000
+ filteredDataForBarchart <- filteredData %>%
+   group_by(state) %>%
+   summarise(totalCases = sum(number)) %>%
+   # Filtering cases of state above 100,000 
+   filter(totalCases > 100000) 
+
+ # Creating bar chart using highchart
+
+ barChart<- highchart() %>%
+   hc_title(text = sprintf("Figure 4: Distribution of DIPHTHERIA over the states with more than 100,000 cases"), 
+           style = list(fontSize = "16px"),
+           align = "center") %>%
+   
+   hc_xAxis(categories = unique(filteredDataForBarchart$state),
+           labels = list(align = "center", style = list(fontSize = "13px"))) %>%
+   
+   hc_yAxis(title = list(text = "Number of Cases")) %>%
+   
+   hc_add_series(name = "States", title ="", data = filteredDataForBarchart$totalCases, color = "#56B4E9") %>%
+  
+   hc_chart(type = "column", options3d = list(enabled = TRUE, beta = 2, alpha = 2, width = 800)) %>%
+  
+   hc_add_theme(hc_theme_538())
+
+ # Display the chart
+   barChart
+
+```
+
+##### Plotting a bar char for comparing the deaths and cases of states with more than 100,000 cases
+
+###### Both the deaths and cases data can be conveniently hidden or displayed as needed, allowing for enhanced visualization.
+
+```{r}
+
+# Plotting a bar char for comparing the deaths and cases of states with more than 100,000 cases
+
+filterHighCases <- filteredData %>%
+  group_by(state) %>%
+  summarise(totalCases = sum(number)) %>%
+  filter(totalCases > 100000)
+
+# Filtering the total number of cases of states with more than 100,000 cases 
+cases <- filteredData %>%
+  filter(event == "CASES") %>%
+  group_by(state) %>%
+  summarise(total_cases = sum(number)) %>%
+  filter(state %in% filterHighCases$state)
+
+# Filtering the total number of death of states with more than 100,000 cases
+deaths <- filteredData %>%
+  filter(event == "DEATHS") %>%
+  group_by(state) %>%
+  summarise(total_deaths = sum(number)) %>%
+  filter(state %in% filterHighCases$state)
+
+# Find the intersection to keep the common states in both data frames
+commonStates <- intersect(cases$state, deaths$state)
+
+# Filter the data frames to keep only the common states
+cases <- cases[cases$state %in% commonStates, ]
+deaths <- deaths[deaths$state %in% commonStates, ]
+
+# Create a data frame to store the combined data
+combinedResult <- data.frame(state = cases$state,
+                            total_cases = cases$total_cases,
+                            total_deaths = deaths$total_deaths)
+
+# Calculate the x-axis position for each bar
+combinedResult$x <- 1:nrow(combinedResult)
+
+barChart <- highchart() %>%
+  hc_title(
+    text = sprintf("Figure 5: Barchart of cases and deaths in states with more than 100,000 reported cases"), 
+    align = "center", style = list(fontSize = "16px")) %>%
+  hc_xAxis(categories = combinedResult$state, title = list(text = "States"), 
+           labels = list(align = "right", style = list(fontSize = "13px"))) %>%
+  hc_yAxis(title = list(text = "Number of Cases/Deaths"), labels = list(format = "{value}")) %>%
+  hc_add_series(name = "Total Number of Deaths", data = combinedResult$total_deaths, color = "#FF0000") %>%
+  hc_add_series(name = "Total Number of Cases", data = combinedResult$total_cases, color = "#56B4E9") %>%
+  hc_chart(type = "column", options3d = list(enabled = TRUE, beta = 2, alpha = 2)) %>%
+  hc_add_theme(hc_theme_538()) %>%
+  hc_plotOptions(column = list(pointPadding = 0.2, borderWidth = 0))
+
+barChart
+
+```
+
+##### Drawing a line chart for number of cases and deaths bor a better comparison
+
+```{r}
+# Drawing a line chart for number of cases and deaths bor a better comparison
+
+lineChar <- highchart() %>%
+  hc_title(text = "Figure 6: Line chart of cases and deaths in states with more than 100,000 reported cases", align = "center") %>%
+  hc_xAxis(categories = combinedResult$state, title = list(text = "State"), 
+           labels = list(align = "right", style = list(fontSize = "12px"))) %>%
+  hc_yAxis(title = list(text = "Number of Cases/Deaths"), labels = list(format = "{value}")) %>%
+  hc_add_series(name = "Total Number of Deaths", data = combinedResult$total_deaths, type = "line",  color = "#FF0000") %>%
+  hc_add_series(name = "Total Number of Cases", data = combinedResult$total_cases, type = "line", color = "#56B4E9")
+
+lineChar
+
+```
+
+##### Drawing a circular graph cases and death
+
+```{r}
+# Circular Graph: Cases and Death
+# Filtering the total number of cases of all states 
+cases <- filteredData %>%
+  filter(event == "CASES") %>%
+  group_by(state) %>%
+  summarise(total_cases = sum(number))
+
+
+# Filtering the total number of death of all states
+deaths <- filteredData %>%
+  filter(event == "DEATHS") %>%
+  group_by(state) %>%
+  summarise(total_deaths = sum(number))
+
+# Find the common states that have both the cases and deaths and returns a vector commonStates
+
+commonStates <- intersect(cases$state, deaths$state)
+
+# Filter the data frames to keep only the common states
+cases <- cases[cases$state %in% commonStates, ]
+deaths <- deaths[deaths$state %in% commonStates, ]
+
+# Create a data frame to store the combined data
+combinedResult <- data.frame(state = cases$state,
+                            total_cases = cases$total_cases,
+                            total_deaths = deaths$total_deaths)
+
+# Create a pie chart for cases and deaths 
+pie1 <- highchart() %>%
+  hc_title(text = "Figure 7: Total cases and deaths", align = "center",
+           style = list(fontSize = "14px")) %>%
+  hc_plotOptions(pie = list(
+    allowPointSelect = TRUE,
+    cursor = "pointer",
+    dataLabels = list(enabled = TRUE, format = "<b>{point.name}</b>: {point.percentage:.1f}%")
+  )) %>%
+  hc_add_series(
+    name = "Total Number :",
+    type = "pie",
+    data = list(
+      list(name = "Deaths", y = sum(combinedResult$total_deaths), color = "#FF0000"),
+      list(name = "Cases", y = sum(combinedResult$total_cases), color = "#56B4E9")
+    )
+  )
+
+pie1
+
+
+
+```
+
+##### Drawing a pair plot for New York
+
+```{r warning=FALSE}
+
+# Convert 'cases' column to numeric
+filteredData$casesNumeric <- as.numeric(filteredData$disease)
+
+# Get unique disease values
+uniqueDiseases <- unique(filteredData$disease)
+
+# Filter the data for New York
+state_1 <- filteredData[filteredData$state == 'NY']
+
+# Set the desired binwidth
+binwidth <- 0.2
+
+# Making a pair plot for New York
+ggpairs_plot <- GGally::ggpairs(
+  state_1,
+  columns = c("number", "from_date"),
+  mapping = aes(color = state),
+  lower = list(continuous = wrap("points", alpha = 0.2)),
+  upper = list(continuous = wrap("cor", size =4, binwidth = binwidth))
+)
+
+
+ggpairs_plot <- ggpairs_plot + scale_fill_manual(values = c("#56B4E9"))
+ggpairs_plot <- ggpairs_plot + scale_color_manual(values=c("#56B4E9"))  
+
+ggpairs_plot <- ggpairs_plot +
+  theme_bw() +
+  theme(strip.text = element_blank()) +  # Remove the facet label
+  labs(title = "Figure 8: Pairplot of DIPHTHERIA in New York (the state with the highest number cases)")
+# Displaying th plot
+print(ggpairs_plot)
+
+```
+
+##### Drawing a pair plot for Illinois
+
+```{r warning=FALSE}
+
+# Convert 'cases' column to numeric
+filteredData$casesNumeric <- as.numeric(filteredData$disease)
+
+# Get unique disease values
+uniqueDiseases <- unique(filteredData$disease)
+
+# Filter the data for Illinois
+state_2 <- filteredData[filteredData$state == 'IL']
+
+# Set the desired binwidth
+binwidth <- 0.2
+
+# Making a pair plot for Illinois
+ggpairs_plot <- GGally::ggpairs(
+  state_2,
+  columns = c("number", "from_date"),
+  mapping = aes(color = state),
+  lower = list(continuous = wrap("points", alpha = 0.2)),
+  upper = list(continuous = wrap("cor", size =4, binwidth = binwidth))
+)
+
+
+ggpairs_plot <- ggpairs_plot + scale_fill_manual(values = c("#56B4E9"))
+ggpairs_plot <- ggpairs_plot + scale_color_manual(values=c("#56B4E9"))  
+# Customize the plot appearance if needed
+ggpairs_plot <- ggpairs_plot +
+  theme_bw() +
+  theme(strip.text = element_blank()) +  # Remove facet labels
+  labs(title = "Figure 9: Pairplot of DIPHTHERIA in Illinois, the state with the second highest number of cases)")
+# Displaying the plot
+print(ggpairs_plot)
+
+```
+
+### Discussion
+
+The analysis of diphtheria cases in the United States between 1887 and 2014 provided important insights into the distribution, prevalence, and impact of the disease.
+The identification of the northeast side of the country, specifically Illinois and New York, as the most affected regions highlights the need for targeted interventions in these areas.
+Understanding the geographic distribution of diphtheria allows public health authorities to allocate resources more effectively, ensuring that preventive measures and healthcare services are readily available in high-risk regions.
+
+The temporal analysis revealed distinct patterns in diphtheria cases over time.
+The significant increase in cases in 1905 and the subsequent peak between 1925 and 1930 indicate periods of intense diphtheria outbreaks.
+This historical context emphasizes the importance of maintaining high vaccination rates and implementing preventive measures to prevent the resurgence of the disease.
+The gradual decline in case numbers after 1930 can be attributed to the widespread adoption of diphtheria vaccines and improved public health measures.
+
+The variations in death rates among states, with New York having the highest proportion of deaths despite Pennsylvania having fewer cases, suggest that factors other than case numbers contribute to the severity and outcome of diphtheria.
+These factors may include differences in healthcare accessibility, quality of care, and timely administration of treatments.
+Addressing these disparities is essential to reduce the impact of diphtheria and improve patient outcomes.
+
+To sum up, this study underscores the importance of continuous surveillance, timely vaccination, and access to healthcare services to prevent and control diphtheria.
+The findings provide a foundation for informed decision-making and targeted strategies to reduce the burden of diphtheria in the United States.
+By prioritizing prevention, vaccination, and healthcare infrastructure, public health authorities can ensure the continued protection of the population against this potentially deadly disease.
+
+### Conclusion
+
+Diphtheria is a serious infectious disease that has had a significant impact on public health in the United States between 1887 and 2014 .
+Through the analysis of diphtheria cases and visualizations, we gained valuable insights into the distribution, prevalence, and severity of the disease across different states.
+The northeast side of the country, particularly Illinois and New York, emerged as the most affected regions with a higher volume of reported cases.
+Further examination through pie and bar charts revealed that New York had the highest proportion of cases, followed by Illinois and Pennsylvania.
+
+Temporal analysis demonstrated significant fluctuations in diphtheria cases over time, with a notable increase in 1905 and a peak between 1925 and 1930.
+Subsequently, there was a gradual decline in case numbers until the year 1980.
+Additionally, a bar chart focusing on states with a significant case load indicated varying death rates, with New York having the highest proportion of deaths despite Pennsylvania having the second-highest number of cases.
+Overall, the study of diphtheria provided valuable insights into the geographic distribution, prevalence, and impact of the disease in the United States.
+These findings can contribute to informed decision-making by policymakers, healthcare professionals, and public health authorities to develop targeted interventions, improve vaccination coverage, and implement measures to reduce the burden of diphtheria and protect the population from this potentially life-threatening disease.
+
+### Literature
+
+**diphtheria pandemic and its history:**
+
+<https://www.cdc.gov/diphtheria/about/history.html>
+
+<https://www.who.int/news-room/feature-stories/detail/diphtheria-a-forgotten-disease>
+
+<https://www.history.com/news/the-great-diphtheria-outbreak-of-1925>
+
+**Dataset :**
+
+<https://healthdata.gov/dataset/Project-Tycho-Level-2-Data/8ihh-ztee/data>
+
+**Coding resource :**
+
+<https://cran.r-project.org/web/packages/usmap/vignettes/mapping.html>
+
+<https://ggplot2.tidyverse.org/>
+
+<https://plotly.com/r/>
+
+<https://stackoverflow.com/>
